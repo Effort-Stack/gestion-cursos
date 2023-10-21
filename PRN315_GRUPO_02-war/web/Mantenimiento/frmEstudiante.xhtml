@@ -1,24 +1,36 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+      
+<head>
+    <title>Form Estudiante</title>
+</head>
 
-    <body>
-
-        <ui:composition template="./../PlantillaGrupo02.xhtml">
-
-            <ui:define name="top">
-                top
-            </ui:define>
-
-            <ui:define name="content">
-                <h:form id="principal">
-                    
-                </h:form>
-            </ui:define>
-
-        </ui:composition>
-
-    </body>
+<body>
+    <ui:composition template="../PlantillaGrupo02.xhtml">
+        <ui:define name="top">
+            top
+        </ui:define>
+        
+        <ui:define name="content">
+            <h:form id="principal">
+                <!-- Aquí es donde se integrará el código de mantenimiento de estudiantes -->
+                <div align="center">
+                    <p:panel id="panelEstudiante" header="MANTENIMIENTO DE ESTUDIANTES">
+                        <p:panelGrid columns="2">
+                            <h:outputLabel value="Nombre Estudiante:" />
+                            <p:inputText id="nombreEstudiante" value="#{estudianteForm.estudiante.usuario.nombre}" />
+                            <!-- Puedes agregar más campos según las propiedades que tenga tu entidad 'Estudiante'. -->
+                        </p:panelGrid>
+                    </p:panel>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</body>
 </html>
+
