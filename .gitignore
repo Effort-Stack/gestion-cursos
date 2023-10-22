@@ -22,3 +22,9 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+/PRN315_GRUPO_02-ejb/build/
+/PRN315_GRUPO_02-war/build/
+/PRN315_GRUPO_02-ejb/dist/
+/build/
+/dist/
+/PRN315_GRUPO_02-war/dist/
