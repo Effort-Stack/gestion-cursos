@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../PlantillaGrupo02.xhtml">
+
+            <ui:define name="top">
+                Inicio Sesión
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputLabel for="correo" value="Correo:" />
+                        <h:inputText id="correo" value="#{usuarioForm.correo}" required="true" requiredMessage="El correo es requerido." />
+
+                        <h:outputLabel for="contrasena" value="Contraseña:" />
+                        <h:inputSecret id="contrasena" value="#{usuarioForm.contrasena}" required="true" requiredMessage="La contraseña es requerida." />
+
+                        <h:commandButton value="Iniciar sesión" action="#{usuarioForm.iniciarSesion}" />
+
+                        <!-- Botones para registro de estudiantes y profesores -->
+                        <h:commandButton value="Registrar Estudiante" action="frmEstudiante?faces-redirect=true" immediate="true" />
+                        <h:commandButton value="Registrar Profesor" action="frmProfesor?faces-redirect=true" immediate="true" />
+                    </h:panelGrid>
+
+                    <!-- Mensajes de validación -->
+                    <h:messages errorClass="error" infoClass="info"/>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

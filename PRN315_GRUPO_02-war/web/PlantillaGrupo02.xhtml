@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' ?> 
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
@@ -7,38 +7,35 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <h:outputStylesheet name="./css/default.css"/>
-        <h:outputStylesheet name="./css/cssLayout.css"/>
-        <title>Facelets Template</title>
+        <title>Registro Académico</title>
     </h:head>
 
     <h:body>
-
-        <div id="top" class="top">
-            <ui:insert name="top">Top</ui:insert>
-        </div>
-
-        <div id="content" class="center_content">
-            <ui:insert name="content">Content</ui:insert>
-        </div>
         
         <h:form id="form">
-            <p:megaMenu orientation="horizontal" autoDisplay="false" style="margintop:20px">
-                <p:submenu label="Proyecto grupo x" icon="pi pi-check">
+            <p:megaMenu orientation="horizontal" autoDisplay="false">
+                <p:submenu label="Aplicación Académica">
                     <p:column>
-                        <p:submenu label="Mantenimientos">
-                            <p:menuitem value="Mantenimiento 1" url="#" />
-                            <p:menuitem value="Mantenimiento 2" url="#" />
-                        </p:submenu>
-                    </p:column>
-                    <p:column>
-                        <p:submenu label="Formularios">
-                            <p:menuitem value="Formulario 1" url="#" />
-                            <p:menuitem value="Formulario 2" url="#" />
+                        <p:submenu label="Acciones Generales">
+                            <p:menuitem value="Inicio" url="#" />
+                            <p:menuitem value="Acerca de" url="#" />
                         </p:submenu>
                     </p:column>
                 </p:submenu>
             </p:megaMenu>
         </h:form>
+
+        <div id="top">
+            <ui:insert name="top">Casa de la Cultura</ui:insert>
+        </div>
+
+        <div id="content">
+            <ui:insert name="content">Contenido Principal</ui:insert>
+        </div>
+        
+        <div id="footer">
+            <p>© 2023 Casa de la Cultura. Todos los derechos reservados.</p>
+            <!-- Puedemos agregar más información aquí, como enlaces a políticas de privacidad, términos de servicio, etc. -->
+        </div>
     </h:body>
 </html>
