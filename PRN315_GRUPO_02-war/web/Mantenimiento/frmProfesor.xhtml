@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+        <ui:composition template="../PlantillaGrupo02.xhtml">
+
+            <ui:define name="top">
+                Crear usuario Profesor
+            </ui:define>
+
+            <ui:define name="content">
+
+                <h:form>
+
+                    <h:outputLabel for="nombre" value="Nombre:" />
+                    <h:inputText id="nombre" value="#{profesorBean.usuario.nombre}" required="true" />
+                    <h:message for="nombre" style="color:red" />
+
+                    <h:outputLabel for="apellido" value="Apellido:" />
+                    <h:inputText id="apellido" value="#{profesorBean.usuario.apellido}" required="true" />
+                    <h:message for="apellido" style="color:red" />
+
+                    <h:outputLabel for="correo" value="Correo Electrónico:" />
+                    <h:inputText id="correo" value="#{profesorBean.usuario.correo}" required="true" />
+                    <h:message for="correo" style="color:red" />
+
+                    <h:outputLabel for="contrasena" value="Contraseña:" />
+                    <h:inputSecret id="contrasena" value="#{profesorBean.usuario.contrasena}" required="true" />
+                    <h:message for="contrasena" style="color:red" />
+
+                    <h:commandButton value="Registrar" action="#{profesorBean.registrar}" />
+
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+    </body>
+</html>
