@@ -5,32 +5,46 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
-      
-<head>
-    <title>Form Estudiante</title>
-</head>
 
-<body>
-    <ui:composition template="../PlantillaGrupo02.xhtml">
-        <ui:define name="top">
-            top
-        </ui:define>
-        
-        <ui:define name="content">
-            <h:form id="principal">
-                <!-- Aquí es donde se integrará el código de mantenimiento de estudiantes -->
-                <div align="center">
-                    <p:panel id="panelEstudiante" header="MANTENIMIENTO DE ESTUDIANTES">
-                        <p:panelGrid columns="2">
-                            <h:outputLabel value="Nombre Estudiante:" />
-                            <p:inputText id="nombreEstudiante" value="#{estudianteForm.estudiante.usuario.nombre}" />
-                            <!-- Puedes agregar más campos según las propiedades que tenga tu entidad 'Estudiante'. -->
-                        </p:panelGrid>
-                    </p:panel>
-                </div>
-            </h:form>
-        </ui:define>
-    </ui:composition>
-</body>
+    <h:head>
+        <title>Form Estudiante</title>
+        <h:outputStylesheet library="css" name="estilosFormEstudiante.css" />
+    </h:head>
+
+
+    <h:body>
+        <ui:composition template="../PlantillaGrupo02.xhtml">
+            <ui:define name="top">
+                Crear usuario Estudiante
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="principal">
+                    <!-- Integración del formulario de registro de estudiantes dentro de la plantilla -->
+                    <div align="center">
+                        <p:panel id="panelEstudiante" header="MANTENIMIENTO DE ESTUDIANTES">
+                            <p:panelGrid columns="2">
+                                <h:outputLabel for="nombre" value="Nombre:" />
+                                <p:inputText id="nombre" value="#{estudianteForm.estudiante.usuario.nombre}" required="true" />
+
+                                <h:outputLabel for="apellido" value="Apellido:" />
+                                <p:inputText id="apellido" value="#{estudianteForm.estudiante.usuario.apellido}" required="true" />
+
+                                <h:outputLabel for="correo" value="Correo:" />
+                                <p:inputText id="correo" value="#{estudianteForm.estudiante.usuario.correo}" required="true" />
+
+                                <h:outputLabel for="contrasena" value="Contraseña:" />
+                                <p:password id="contrasena" value="#{estudianteForm.estudiante.usuario.contrasena}" required="true" />
+                            </p:panelGrid>
+                            <div id="divButton">
+                                <p:commandButton value="Atrás" action="frmUsuario?faces-redirect=true" immediate="true"/>
+                                <p:commandButton value="Registrar" action="#{estudianteForm.registrar}" update=":principal" />                        
+                            </div>
+                        </p:panel>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
 </html>
 

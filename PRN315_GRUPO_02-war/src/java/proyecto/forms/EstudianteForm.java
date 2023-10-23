@@ -15,7 +15,9 @@ public class EstudianteForm implements Serializable {
     /**
      * Creates a new instance of EstudianteForm
      */
-    public EstudianteForm() { }
+    public EstudianteForm() {
+        estudiante = new Estudiante();  // Se inicializa el estudiante al crear la instancia de este bean
+    }
 
     @PostConstruct
     public void init() {
@@ -32,5 +34,16 @@ public class EstudianteForm implements Serializable {
 
     public void setEstudiante(Estudiante estudiante) {
         this.estudiante = estudiante;
+    }
+
+    // Método para registrar el estudiante
+    public void registrar() {
+        try {
+            // Aquí, en lugar de imprimir, normalmente guardarías el estudiante en una base de datos
+            System.out.println("Estudiante registrado: " + estudiante.getUsuario().getNombre());
+        } catch (Exception e) {
+            // Aquí puedes manejar la excepción si es necesario
+            System.out.println("Error al registrar estudiante: " + e.getMessage());
+        }
     }
 }
