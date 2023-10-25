@@ -15,14 +15,14 @@
     <h:body>
         <ui:composition template="../PlantillaGrupo02.xhtml">
             <ui:define name="top">
-                Crear usuario Estudiante
+                INICIO > CREAR USUARIO ESTUDIANTE
             </ui:define>
 
             <ui:define name="content">
                 <h:form id="principal">
                     <!-- Integración del formulario de registro de estudiantes dentro de la plantilla -->
                     <div align="center">
-                        <p:panel id="panelEstudiante" header="MANTENIMIENTO DE ESTUDIANTES">
+                        <p:panel id="panelEstudiante" header="CREAR USUARIO ESTUDIANTE">
                             <p:panelGrid columns="2">
                                 <h:outputLabel for="nombre" value="Nombre:" />
                                 <p:inputText id="nombre" value="#{estudianteForm.estudiante.usuario.nombre}" required="true" />
