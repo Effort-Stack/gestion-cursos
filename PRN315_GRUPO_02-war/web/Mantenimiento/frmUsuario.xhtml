@@ -1,12 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
 
-    <body>
+    <h:head>
+        <title>Inicio Sesión</title>
+    </h:head>
 
+    <h:body>
         <ui:composition template="../PlantillaGrupo02.xhtml">
 
             <ui:define name="top">
@@ -14,27 +17,34 @@
             </ui:define>
 
             <ui:define name="content">
-                <h:form>
-                    <h:panelGrid columns="2" cellpadding="5">
-                        <h:outputLabel for="correo" value="Correo:" />
-                        <h:inputText id="correo" value="#{usuarioForm.correo}" required="true" requiredMessage="El correo es requerido." />
+                <h:form id="principal">
 
-                        <h:outputLabel for="contrasena" value="Contraseña:" />
-                        <h:inputSecret id="contrasena" value="#{usuarioForm.contrasena}" required="true" requiredMessage="La contraseña es requerida." />
+                    <div align="center">
+                        <p:panel id="panelInicioSesion" header="INICIO DE SESIÓN">
+                            <p:panelGrid columns="2">
+                                <h:outputLabel for="correo" value="Correo:" />
+                                <p:inputText id="correo" value="#{usuarioForm.correo}" required="true" requiredMessage="El correo es requerido." />
 
-                        <h:commandButton value="Iniciar sesión" action="#{usuarioForm.iniciarSesion}" />
+                                <h:outputLabel for="contrasena" value="Contraseña:" />
+                                <p:password id="contrasena" value="#{usuarioForm.contrasena}" required="true" requiredMessage="La contraseña es requerida." />
+                            </p:panelGrid>
 
-                        <!-- Botones para registro de estudiantes y profesores -->
-                        <h:commandButton value="Registrar Estudiante" action="frmEstudiante?faces-redirect=true" immediate="true" />
-                        <h:commandButton value="Registrar Profesor" action="frmProfesor?faces-redirect=true" immediate="true" />
-                    </h:panelGrid>
+                            <div id="divButtonSesion">
+                                <p:commandButton value="Iniciar sesión" action="#{usuarioForm.iniciarSesion}" update=":principal" />
+                            </div>
+                            <div id="divButtonRegistro">
+                                <p:commandButton value="Registrar Estudiante" action="frmEstudiante?faces-redirect=true" immediate="true" />
+                                <p:commandButton value="Registrar Profesor" action="frmProfesor?faces-redirect=true" immediate="true" />
+                            </div>
 
-                    <!-- Mensajes de validación -->
-                    <h:messages errorClass="error" infoClass="info"/>
+                            <!-- Mensajes de validación -->
+                            <h:messages errorClass="error" infoClass="info"/>
+                        </p:panel>
+                    </div>
+
                 </h:form>
             </ui:define>
 
         </ui:composition>
-
-    </body>
+    </h:body>
 </html>
