@@ -28,3 +28,5 @@ replay_pid*
 /build/
 /dist/
 /PRN315_GRUPO_02-war/dist/
+/PRN315_GRUPO_02/PRN315_GRUPO_02-ejb/nbproject/private/
+/PRN315_GRUPO_02-war/nbproject/private/
