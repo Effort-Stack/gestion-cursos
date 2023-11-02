@@ -30,4 +30,6 @@ public interface EstudianteFacadeLocal {
 
     int count();
     
+    List<Estudiante> buscarTodosAlfabeticamente();
+    
 }

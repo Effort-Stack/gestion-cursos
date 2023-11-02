@@ -5,9 +5,11 @@
  */
 package proyecto.ejb;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import proyecto.entidades.Profesor;
 
 /**
@@ -27,6 +29,19 @@ public class ProfesorFacade extends AbstractFacade<Profesor> implements Profesor
 
     public ProfesorFacade() {
         super(Profesor.class);
+    }
+
+    @Override
+    public List<Profesor> buscarTodosAlfabeticamente() {
+         try {
+            em.getEntityManagerFactory().getCache().evictAll();
+            String consulta = "SELECT * FROM [Profesor] order by nombre";
+            Query query = em.createNativeQuery(consulta, Profesor.class);
+            List<Profesor> listaResultado = query.getResultList();
+            return listaResultado;
+        } catch (Exception e) {
+            return null;
+        }
     }
     
 }
