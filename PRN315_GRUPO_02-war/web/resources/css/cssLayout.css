@@ -1,61 +1,33 @@
+/* CSS Layout.css */
 
-#top {
-    position: relative;
-    background-color: #036fab;
-    color: white;
-    padding: 5px;
-    margin: 0px 0px 10px 0px;
+/* Estilos para el cuerpo de la página y el contenedor principal para asegurar que el footer permanezca abajo */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
 }
 
-#bottom {
-    position: relative;
-    background-color: #c2dfef;
-    padding: 5px;
-    margin: 10px 0px 0px 0px;
+/* Estilos para el footer */
+.footer-toolbar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center; /* Centra el texto horizontalmente */
+    line-height: 60px; /* Altura de línea para centrar verticalmente el texto */
+    border-top: 1px solid #dcdcdc; /* Borde superior opcional */
 }
 
-#left {
-    float: left;
-    background-color: #ece3a5;
-    padding: 5px;
-    width: 150px;
-}
-
-#right {
-    float: right;
-    background-color: #ece3a5;
-    padding: 5px;
-    width: 150px;
-}
-
-.center_content {
-    position: relative;
-    background-color: #dddddd;
-    padding: 5px;
-}
-
-.left_content {
-    background-color: #dddddd;
-    padding: 5px;
-    margin-left: 170px;
-}
-
-.right_content {
-    background-color: #dddddd;
-    padding: 5px;
-    margin: 0px 170px 0px 170px;
-}
-
-#top a:link, #top a:visited {
-  color: white;
-  font-weight : bold;
-  text-decoration: none;
-}
-
-#top a:link:hover, #top a:visited:hover  {
-  color: black;
-  font-weight : bold;
-  text-decoration : underline;
+/* Sobrescribir estilos por defecto de PrimeFaces para la alineación del facet */
+.footer-toolbar .ui-toolbar-group-right {
+    float: none !important;
+    display: block !important;
 }
 
 
+/* Asegúrate de que el contenido principal no se superponga con el footer */
+.content {
+    padding-bottom: 60px; /* Ajusta este valor al tamaño de tu footer */
+}
