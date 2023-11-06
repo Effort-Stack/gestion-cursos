@@ -1,21 +1,43 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <body>
+<h:head>
+    <!-- Referencias a los archivos CSS -->
+    <h:outputStylesheet library="css" name="default.css" />
+</h:head>
 
-        <ui:composition template="./PlantillaGrupo02.xhtml">
+<h:body>
 
-            <ui:define name="top">
-                top
-            </ui:define>
+    <ui:composition template="./PlantillaGrupo02.xhtml">
 
-            <ui:define name="content">
-                content
-            </ui:define>
+        <ui:define name="content">
+            <!-- Contenido principal de la página de inicio -->
+            <div class="center_content">
+                <h:graphicImage library="img" name="ues.png" alt="Logo Universidad" styleClass="logo-universidad"/>
+                <h1>UNIVERSIDAD DE EL SALVADOR</h1>
+                <h2>FACULTAD DE INGENIERÍA Y ARQUITECTURA</h2>
+                <h3>ESCUELA DE INGENIERÍA DE SISTEMAS INFORMÁTICOS</h3>
 
-        </ui:composition>
+                <p><strong>Integrantes del grupo:</strong></p>
+                <ul>
+                    <li>Alas Guillen, Samuel Enrique - AG20063</li>
+                    <li>Cativo Alonzo, Joshua Moisés - CA19024</li>
+                    <li>Hernández Castillo, Josué Gerardo - HC16007</li>
+                </ul>
 
-    </body>
+                <p><strong>Tutor:</strong> Ing. Julio Cesar Brizuela Alvarado</p>
+                <p><strong>Asignatura:</strong> Programación III</p>
+                <p><strong>Grupo de trabajo:</strong> 02</p>
+
+            </div>
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
 </html>

@@ -9,39 +9,37 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet library="css" name="cssLayout.css" />
+        <h:outputStylesheet library="css" name="default.css" />
+
         <title>Sistema de Gestión Académica</title>
     </h:head>
 
     <h:body>
 
-        <div id="top" class="top">
-            <ui:insert name="top">Encabezado de la Aplicación</ui:insert>
-        </div>
-
         <div id="content" class="center_content">
-            <ui:insert name="content">Contenido Principal</ui:insert>
             <h:form id="menuForm">
                 <p:megaMenu orientation="horizontal" autoDisplay="false" style="margin-top:20px">
                     <p:submenu label="Gestión Académica" icon="pi pi-check">
                         <p:column>
                             <p:submenu label="Estudiantes">
-                                <p:menuitem value="Gestión de Estudiantes" action="/frmEstudiante.xhtml" />
+                                <p:menuitem value="Gestión de Estudiantes" outcome="/Mantenimiento/frmEstudiante" icon="pi pi-users" />
                             </p:submenu>
                             <p:submenu label="Profesores">
-                                <p:menuitem value="Gestión de Profesores" action="/frmProfesor.xhtml" />
+                                <p:menuitem value="Gestión de Profesores" outcome="/Mantenimiento/frmProfesor" icon="pi pi-user" />
                             </p:submenu>
                         </p:column>
                         <p:column>
                             <p:submenu label="Cursos">
-                                <p:menuitem value="Gestión de Cursos" action="/frmCurso.xhtml" />
+                                <p:menuitem value="Gestión de Cursos" outcome="/Mantenimiento/frmCurso" icon="pi pi-book" />
                             </p:submenu>
                             <p:submenu label="Notas">
-                                <p:menuitem value="Gestión de Notas" action="/frmNota.xhtml" />
+                                <p:menuitem value="Gestión de Notas" outcome="/Mantenimiento/frmNota" icon="pi pi-pencil" />
                             </p:submenu>
                         </p:column>
                     </p:submenu>
                 </p:megaMenu>
             </h:form>
+            <ui:insert name="content">Contenido Principal</ui:insert>
         </div>
         
         <p:toolbar styleClass="footer-toolbar">

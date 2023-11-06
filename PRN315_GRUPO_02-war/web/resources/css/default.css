@@ -1,29 +1,36 @@
-body {
-    background-color: #ffffff;
-    font-size: 12px;
-    font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
-    color: #000000;  
-    margin: 10px;
+.logo-universidad {
+    display: block;
+    margin: auto; /* Centrar el logo horizontalmente */
+    padding: 20px 0; /* Añadir espacio por encima y por debajo del logo */
+    width: 200px; /* Ajustar el ancho del logo */
+    height: auto; /* Mantener la proporción del logo */
 }
 
-h1 {
-    font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
-    border-bottom: 1px solid #AFAFAF; 
-    font-size:  16px;
-    font-weight: bold;
-    margin: 0px;
-    padding: 0px;
-    color: #D20005;
+
+.center_content h1,
+.center_content h2,
+.center_content h3,
+.center_content p,
+.center_content ul {
+    text-align: center; /* Centrar el texto de los elementos */
+    margin: 10px 0; /* Añadir un margen vertical para separar los elementos */
 }
 
-a:link, a:visited {
-  color: #045491;
-  font-weight : bold;
-  text-decoration: none;
+.center_content ul {
+    list-style-type: none; /* Quitar los bullets de la lista */
+    padding: 0; /* Quitar el padding por defecto de la lista */
 }
 
-a:link:hover, a:visited:hover  {
-  color: #045491;
-  font-weight : bold;
-  text-decoration : underline;
+.center_content li {
+    margin: 5px 0; /* Añadir un pequeño margen entre ítems de la lista */
+}
+
+.button-grid {
+    margin: 20px auto; /* Centrar la cuadrícula de botones y añadir margen vertical */
+    width: auto; /* Permitir que la cuadrícula ocupe solo el ancho de sus botones */
+}
+
+.button-grid .ui-button {
+    margin: 5px; /* Añadir margen alrededor de los botones */
+    width: 150px; /* Establecer un ancho fijo para todos los botones */
 }
