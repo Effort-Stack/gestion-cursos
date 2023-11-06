@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyecto.entidades;
 
 import java.io.Serializable;
@@ -19,20 +14,16 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author johec
- */
 @Entity
 @Table(name = "Nota")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Nota.findAll", query = "SELECT n FROM Nota n")
-    , @NamedQuery(name = "Nota.findById", query = "SELECT n FROM Nota n WHERE n.id = :id")
-    , @NamedQuery(name = "Nota.findByNotaExamen", query = "SELECT n FROM Nota n WHERE n.notaExamen = :notaExamen")
-    , @NamedQuery(name = "Nota.findByNotaTarea", query = "SELECT n FROM Nota n WHERE n.notaTarea = :notaTarea")
-    , @NamedQuery(name = "Nota.findByNotaLaboratorio", query = "SELECT n FROM Nota n WHERE n.notaLaboratorio = :notaLaboratorio")
-    , @NamedQuery(name = "Nota.findByNotaFinal", query = "SELECT n FROM Nota n WHERE n.notaFinal = :notaFinal")})
+    @NamedQuery(name = "Nota.findAll", query = "SELECT n FROM Nota n"),
+    @NamedQuery(name = "Nota.findById", query = "SELECT n FROM Nota n WHERE n.id = :id"),
+    @NamedQuery(name = "Nota.findByNotaExamen", query = "SELECT n FROM Nota n WHERE n.notaExamen = :notaExamen"),
+    @NamedQuery(name = "Nota.findByNotaTarea", query = "SELECT n FROM Nota n WHERE n.notaTarea = :notaTarea"),
+    @NamedQuery(name = "Nota.findByNotaLaboratorio", query = "SELECT n FROM Nota n WHERE n.notaLaboratorio = :notaLaboratorio"),
+})
 public class Nota implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,13 +44,13 @@ public class Nota implements Serializable {
     @NotNull
     @Column(name = "notaLaboratorio")
     private double notaLaboratorio;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "notaFinal")
     private double notaFinal;
+    
     @JoinColumn(name = "curso_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Curso cursoId;
+    
     @JoinColumn(name = "estudiante_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Estudiante estudianteId;
@@ -71,17 +62,17 @@ public class Nota implements Serializable {
         this.id = id;
     }
 
-    public Nota(Integer id, double notaExamen, double notaTarea, double notaLaboratorio, double notaFinal) {
+    public Nota(Integer id, double notaExamen, double notaTarea, double notaLaboratorio) {
         this.id = id;
         this.notaExamen = notaExamen;
         this.notaTarea = notaTarea;
         this.notaLaboratorio = notaLaboratorio;
-        this.notaFinal = notaFinal;
+        calcularNotaFinal();
     }
 
     public Integer getId() {
-        return id;
-    }
+    return id;
+}
 
     public void setId(Integer id) {
         this.id = id;
@@ -110,7 +101,6 @@ public class Nota implements Serializable {
     public void setNotaLaboratorio(double notaLaboratorio) {
         this.notaLaboratorio = notaLaboratorio;
     }
-
     public double getNotaFinal() {
         return notaFinal;
     }
@@ -135,6 +125,13 @@ public class Nota implements Serializable {
         this.estudianteId = estudianteId;
     }
 
+    public void calcularNotaFinal() {
+        double examenPonderado = this.notaExamen * 0.5;
+        double tareaPonderada = this.notaTarea * 0.2;
+        double laboratorioPonderado = this.notaLaboratorio * 0.3;
+        this.notaFinal = examenPonderado + tareaPonderada + laboratorioPonderado;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -144,7 +141,6 @@ public class Nota implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Nota)) {
             return false;
         }
@@ -159,5 +155,4 @@ public class Nota implements Serializable {
     public String toString() {
         return "proyecto.entidades.Nota[ id=" + id + " ]";
     }
-    
 }
