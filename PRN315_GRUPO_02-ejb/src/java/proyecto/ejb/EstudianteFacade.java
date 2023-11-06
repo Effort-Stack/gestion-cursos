@@ -26,7 +26,8 @@ public class EstudianteFacade extends AbstractFacade<Estudiante> implements Estu
     public List<Estudiante> buscarTodosAlfabeticamente() {
         try {
             em.getEntityManagerFactory().getCache().evictAll();
-            String consulta = "SELECT * FROM [Profesor] order by nombre";
+            // Corrige el nombre de la tabla a "Estudiante"
+            String consulta = "SELECT * FROM [Estudiante] order by nombre";
             Query query = em.createNativeQuery(consulta, Estudiante.class);
             List<Estudiante> listaResultado = query.getResultList();
             return listaResultado;
@@ -34,5 +35,6 @@ public class EstudianteFacade extends AbstractFacade<Estudiante> implements Estu
             return null;
         }
     }
+
     
 }
