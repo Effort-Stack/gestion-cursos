@@ -1,17 +1,65 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-    <body>
+<h:head>
+    <title>Gestión de Profesores</title>
+</h:head>
 
-        <ui:composition template="./../PlantillaGrupo02.xhtml">
+<h:body>
 
-            <ui:define name="content">
-                content
-            </ui:define>
+    <ui:composition template="./../PlantillaGrupo02.xhtml">
+        <ui:define name="content">
+            <h:form id="formProfesor">
 
-        </ui:composition>
+                <p:growl id="messages" showDetail="true" />
 
-    </body>
+                <p:panel header="Información del Profesor">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <p:outputLabel for="nombre" value="Nombre:" />
+                        <p:inputText id="nombre" value="#{profesorForm.profesor.nombre}" required="true" />
+                        
+                        <p:outputLabel for="apellido" value="Apellido:" />
+                        <p:inputText id="apellido" value="#{profesorForm.profesor.apellido}" required="true" />
+                        
+                        <p:outputLabel for="correo" value="Correo:" />
+                        <p:inputText id="correo" value="#{profesorForm.profesor.correo}" required="true" />
+                        
+                        <p:outputLabel for="carnet" value="Carnet:" />
+                        <p:inputText id="carnet" value="#{profesorForm.profesor.carnet}" required="true" />
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:commandButton value="Guardar" actionListener="#{profesorForm.guardarProfesor}" update=":formProfesor:messages :formProfesor:profesoresTable"/>
+                <p:commandButton value="Actualizar" actionListener="#{profesorForm.actualizarProfesor}" update=":formProfesor:messages :formProfesor:profesoresTable" />
+                <p:commandButton value="Eliminar" actionListener="#{profesorForm.eliminarProfesor}" update=":formProfesor:messages :formProfesor:profesoresTable" />
+
+                <p:dataTable id="profesoresTable" var="profesor" value="#{profesorForm.listaProfesores}" 
+                             selection="#{profesorForm.selectedProfesor}" selectionMode="single" rowKey="#{profesor.id}">
+                    <p:ajax event="rowSelect" update=":formProfesor:messages :formProfesor:profesoresTable" />
+                    <p:column headerText="ID">
+                        <h:outputText value="#{profesor.id}" />
+                    </p:column>
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{profesor.nombre}" />
+                    </p:column>
+                    <p:column headerText="Apellido">
+                        <h:outputText value="#{profesor.apellido}" />
+                    </p:column>
+                    <p:column headerText="Correo">
+                        <h:outputText value="#{profesor.correo}" />
+                    </p:column>
+                    <p:column headerText="Carnet">
+                        <h:outputText value="#{profesor.carnet}" />
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</h:body>
 </html>
