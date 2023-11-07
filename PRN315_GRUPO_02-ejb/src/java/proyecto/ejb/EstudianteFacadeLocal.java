@@ -23,4 +23,6 @@ public interface EstudianteFacadeLocal {
     
     List<Estudiante> buscarTodosAlfabeticamente();
     
+    Estudiante findByCarnet(String carnet);
+    
 }

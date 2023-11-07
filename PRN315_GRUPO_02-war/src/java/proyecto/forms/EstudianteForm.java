@@ -64,22 +64,43 @@ public class EstudianteForm implements Serializable {
     
     public void actualizarEstudiante() {
         try {
-            estudianteFacade.edit(estudiante);
-            listaEstudiantes = estudianteFacade.findAll(); // Actualizar la lista
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Éxito", "Estudiante actualizado correctamente."));
+            // Primero buscar el estudiante por el carnet para obtener el id correcto
+            Estudiante estudianteExistente = estudianteFacade.findByCarnet(estudiante.getCarnet());
+            if (estudianteExistente != null) {
+                estudiante.setId(estudianteExistente.getId());
+                estudianteFacade.edit(estudiante);
+                listaEstudiantes = estudianteFacade.findAll(); // Actualizar la lista
+                FacesContext.getCurrentInstance().addMessage(null, 
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Éxito", "Estudiante actualizado correctamente."));
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, 
+                    new FacesMessage(FacesMessage.SEVERITY_WARN, "Atención", "Estudiante no encontrado."));
+            }
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudo actualizar el estudiante."));
+            FacesContext.getCurrentInstance().addMessage(null, 
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudo actualizar el estudiante."));
+            e.printStackTrace(); // Para depuración
         }
     }
 
     public void eliminarEstudiante() {
         try {
-            estudianteFacade.remove(estudiante);
-            listaEstudiantes = estudianteFacade.findAll(); // Actualizar la lista
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Éxito", "Estudiante eliminado correctamente."));
-            estudiante = new Estudiante(); // Reiniciar el objeto para limpiar el formulario
+            // Similar a actualizar, primero encontrar por carnet para asegurarnos del id correcto
+            Estudiante estudianteExistente = estudianteFacade.findByCarnet(estudiante.getCarnet());
+            if (estudianteExistente != null) {
+                estudianteFacade.remove(estudianteExistente);
+                listaEstudiantes = estudianteFacade.findAll(); // Actualizar la lista
+                FacesContext.getCurrentInstance().addMessage(null, 
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Éxito", "Estudiante eliminado correctamente."));
+                estudiante = new Estudiante(); // Reiniciar el objeto para limpiar el formulario
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, 
+                    new FacesMessage(FacesMessage.SEVERITY_WARN, "Atención", "Estudiante no encontrado."));
+            }
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudo eliminar el estudiante."));
+            FacesContext.getCurrentInstance().addMessage(null, 
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudo eliminar el estudiante."));
+            e.printStackTrace(); // Para depuración
         }
     }
 }

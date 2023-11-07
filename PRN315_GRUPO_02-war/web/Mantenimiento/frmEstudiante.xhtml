@@ -34,9 +34,10 @@
                     </h:panelGrid>
                 </p:panel>
 
-                <p:commandButton value="Guardar" action="#{estudianteForm.guardarEstudiante}" ajax="false" />
-                <p:commandButton value="Actualizar" action="#{estudianteForm.actualizarEstudiante}" update=":formEstudiante:messages" />
-                <p:commandButton value="Eliminar" action="#{estudianteForm.eliminarEstudiante}" update=":formEstudiante:messages" />
+                <p:commandButton value="Guardar" action="#{estudianteForm.guardarEstudiante}" ajax="false" update=":formEstudiante:estudiantesTable, :formEstudiante:messages" />
+                <p:commandButton value="Actualizar" action="#{estudianteForm.actualizarEstudiante}" update=":formEstudiante:estudiantesTable, :formEstudiante:messages" />
+                <p:commandButton value="Eliminar" action="#{estudianteForm.eliminarEstudiante}" update=":formEstudiante:estudiantesTable, :formEstudiante:messages" 
+                                 onclick="return confirm('¿Está seguro de que desea eliminar este estudiante?');" />
 
                 <p:dataTable var="estudiante" value="#{estudianteForm.listaEstudiantes}" id="estudiantesTable" editable="true">
                     <p:column headerText="ID">
