@@ -90,6 +90,8 @@ public class NotaForm implements Serializable {
             nota.setEstudianteId(estudiante);
             nota.calcularNotaFinal(); // Calcular la nota final antes de guardar
             notaFacade.create(nota);
+            listaEstudiantes = estudianteFacade.findAll();
+            listaCursos = cursoFacade.findAll();
             listaNotas = notaFacade.findAll(); // Actualizar la lista
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Éxito", "Nota agregada correctamente."));
             nota = new Nota(); // Reiniciar el objeto nota para limpiar el formulario

@@ -60,21 +60,41 @@ public class ProfesorForm implements Serializable {
     
     public void actualizarProfesor() {
         try {
-            profesorFacade.edit(selectedProfesor); // Actualizar el profesor seleccionado
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Éxito", "Profesor actualizado correctamente."));
-            selectedProfesor = null; // Reiniciar la selección
+            // Primero buscar el profesor por el carnet para obtener el id correcto
+            Profesor profesorExistente = profesorFacade.findByCarnet(profesor.getCarnet());
+            if (profesorExistente != null) {
+                profesor.setId(profesorExistente.getId());
+                profesorFacade.edit(profesor);
+                FacesContext.getCurrentInstance().addMessage(null, 
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Éxito", "Profesor actualizado correctamente."));
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, 
+                    new FacesMessage(FacesMessage.SEVERITY_WARN, "Atención", "Profesor no encontrado."));
+            }
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudo actualizar el profesor."));
+            FacesContext.getCurrentInstance().addMessage(null, 
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudo actualizar el profesor."));
+            e.printStackTrace(); // Para depuración
         }
     }
 
     public void eliminarProfesor() {
         try {
-            profesorFacade.remove(selectedProfesor); // Eliminar el profesor seleccionado
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Éxito", "Profesor eliminado correctamente."));
-            selectedProfesor = null; // Reiniciar la selección
+            // Similar a actualizar, primero encontrar por carnet para asegurarnos del id correcto
+            Profesor profesorExistente = profesorFacade.findByCarnet(profesor.getCarnet());
+            if (profesorExistente != null) {
+                profesorFacade.remove(profesorExistente);
+                FacesContext.getCurrentInstance().addMessage(null, 
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Éxito", "Profesor eliminado correctamente."));
+                profesor = new Profesor(); // Reiniciar el objeto para limpiar el formulario
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, 
+                    new FacesMessage(FacesMessage.SEVERITY_WARN, "Atención", "Profesor no encontrado."));
+            }
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudo eliminar el profesor."));
+            FacesContext.getCurrentInstance().addMessage(null, 
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudo eliminar el profesor."));
+            e.printStackTrace(); // Para depuración
         }
     }
 

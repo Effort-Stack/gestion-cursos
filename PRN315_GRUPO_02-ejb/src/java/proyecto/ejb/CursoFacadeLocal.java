@@ -2,6 +2,7 @@ package proyecto.ejb;
 
 import java.util.List;
 import javax.ejb.Local;
+import javax.persistence.EntityNotFoundException;
 import proyecto.entidades.Curso;
 
 @Local
@@ -21,4 +22,5 @@ public interface CursoFacadeLocal {
 
     int count();
     
+    Curso findById(Integer id) throws EntityNotFoundException;
 }

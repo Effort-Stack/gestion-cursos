@@ -34,10 +34,12 @@
                     </h:panelGrid>
                 </p:panel>
 
-                <p:commandButton value="Guardar" actionListener="#{profesorForm.guardarProfesor}" update=":formProfesor:messages :formProfesor:profesoresTable"/>
-                <p:commandButton value="Actualizar" actionListener="#{profesorForm.actualizarProfesor}" update=":formProfesor:messages :formProfesor:profesoresTable" />
-                <p:commandButton value="Eliminar" actionListener="#{profesorForm.eliminarProfesor}" update=":formProfesor:messages :formProfesor:profesoresTable" />
+                <p:commandButton value="Guardar" action="#{profesorForm.guardarProfesor}" update=":formProfesor:profesoresTable, :formProfesor:messages" />
+                <p:commandButton value="Actualizar" action="#{profesorForm.actualizarProfesor}" update=":formProfesor:profesoresTable, :formProfesor:messages" />
+                <p:commandButton value="Eliminar" action="#{profesorForm.eliminarProfesor}" update=":formProfesor:profesoresTable, :formProfesor:messages" 
+                                 onclick="return confirm('¿Está seguro de que desea eliminar este profesor?');" />
 
+                
                 <p:dataTable id="profesoresTable" var="profesor" value="#{profesorForm.listaProfesores}" 
                              selection="#{profesorForm.selectedProfesor}" selectionMode="single" rowKey="#{profesor.id}">
                     <p:ajax event="rowSelect" update=":formProfesor:messages :formProfesor:profesoresTable" />

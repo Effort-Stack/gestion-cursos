@@ -18,11 +18,18 @@
 
                 <p:growl id="messages" showDetail="true" />
 
+                <p:panel header="Selección de Curso">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputLabel for="cursoSeleccionado" value="Seleccione un Curso:" />
+                        <p:selectOneMenu id="cursoSeleccionado" value="#{cursoForm.selectedCursoId}" converter="javax.faces.Integer">
+                            <f:selectItem itemLabel="Seleccione" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{cursoForm.listaCursos}" var="curso" itemLabel="#{curso.nombre}" itemValue="#{curso.id}" />
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                </p:panel>
+
                 <p:panel header="Información del Curso">
                     <h:panelGrid columns="2" cellpadding="5">
-                        <h:outputLabel for="id" value="ID:" />
-                        <p:inputText id="id" value="#{cursoForm.curso.id}" disabled="true" />
-
                         <h:outputLabel for="nombre" value="Nombre:" />
                         <p:inputText id="nombre" value="#{cursoForm.curso.nombre}" required="true" />
 
@@ -30,13 +37,17 @@
                         <p:inputTextarea id="descripcion" value="#{cursoForm.curso.descripcion}" />
 
                         <h:outputLabel for="duracion" value="Duración (horas):" />
-                        <p:inputText id="duracion" value="#{cursoForm.curso.duracion}" required="true" />
+                        <p:inputText id="duracion" value="#{cursoForm.curso.duracion}" required="true" validatorMessage="La duración debe ser un número positivo.">
+                            <f:convertNumber minFractionDigits="1" maxFractionDigits="2"/>
+                            <f:validateDoubleRange minimum="0.1" />
+                        </p:inputText>
                     </h:panelGrid>
                 </p:panel>
 
-                <p:commandButton value="Guardar" actionListener="#{cursoForm.guardarCurso}" update=":formCurso:messages :formCurso:cursosTable"/>
-                <p:commandButton value="Actualizar" actionListener="#{cursoForm.actualizarCurso}" update=":formCurso:messages :formCurso:cursosTable"/>
-                <p:commandButton value="Eliminar" actionListener="#{cursoForm.eliminarCurso}" update=":formCurso:messages :formCurso:cursosTable"/>
+                <p:commandButton value="Guardar" action="#{cursoForm.guardarCurso}" update=":formCurso:cursosTable, :formCurso:messages" />
+                <p:commandButton value="Actualizar" action="#{cursoForm.actualizarCurso}" update=":formCurso:cursosTable, :formCurso:messages" />
+                <p:commandButton value="Eliminar" action="#{cursoForm.eliminarCurso}" update=":formCurso:cursosTable, :formCurso:messages" 
+                                 onclick="return confirm('¿Está seguro de que desea eliminar este curso?');" />
 
                 <p:dataTable id="cursosTable" var="curso" value="#{cursoForm.listaCursos}" editable="true">
                     <p:column headerText="ID">

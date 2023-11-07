@@ -25,6 +25,8 @@ import javax.persistence.GenerationType;
     @NamedQuery(name = "Nota.findByNotaExamen", query = "SELECT n FROM Nota n WHERE n.notaExamen = :notaExamen"),
     @NamedQuery(name = "Nota.findByNotaTarea", query = "SELECT n FROM Nota n WHERE n.notaTarea = :notaTarea"),
     @NamedQuery(name = "Nota.findByNotaLaboratorio", query = "SELECT n FROM Nota n WHERE n.notaLaboratorio = :notaLaboratorio"),
+    @NamedQuery(name = "Nota.findByEstudianteId", query = "SELECT n FROM Nota n WHERE n.estudianteId.id = :estudianteId"),
+    @NamedQuery(name = "Nota.findByCursoId", query = "SELECT n FROM Nota n WHERE n.cursoId.id = :cursoId"),
 })
 public class Nota implements Serializable {
 

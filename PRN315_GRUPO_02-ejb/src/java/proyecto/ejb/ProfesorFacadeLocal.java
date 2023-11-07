@@ -24,4 +24,5 @@ public interface ProfesorFacadeLocal {
     
     List<Profesor> buscarTodosAlfabeticamente();
     
+    Profesor findByCarnet(String carnet);
 }
