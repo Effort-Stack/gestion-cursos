@@ -13,6 +13,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 @Entity
 @Table(name = "Nota")
@@ -29,7 +31,7 @@ public class Nota implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
@@ -72,7 +74,7 @@ public class Nota implements Serializable {
 
     public Integer getId() {
     return id;
-}
+    }
 
     public void setId(Integer id) {
         this.id = id;

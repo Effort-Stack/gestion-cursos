@@ -34,9 +34,9 @@
                     </h:panelGrid>
                 </p:panel>
 
-                <p:commandButton value="Guardar" actionListener="#{estudianteForm.guardarEstudiante}" update=":formEstudiante:messages"/>
-                <p:commandButton value="Actualizar" actionListener="#{estudianteForm.actualizarEstudiante}" update=":formEstudiante:messages" />
-                <p:commandButton value="Eliminar" actionListener="#{estudianteForm.eliminarEstudiante}" update=":formEstudiante:messages" />
+                <p:commandButton value="Guardar" action="#{estudianteForm.guardarEstudiante}" ajax="false" />
+                <p:commandButton value="Actualizar" action="#{estudianteForm.actualizarEstudiante}" update=":formEstudiante:messages" />
+                <p:commandButton value="Eliminar" action="#{estudianteForm.eliminarEstudiante}" update=":formEstudiante:messages" />
 
                 <p:dataTable var="estudiante" value="#{estudianteForm.listaEstudiantes}" id="estudiantesTable" editable="true">
                     <p:column headerText="ID">

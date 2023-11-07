@@ -19,13 +19,13 @@
                 <p:panel header="Información de la Nota">
                     <h:panelGrid columns="2" cellpadding="5">
                         <h:outputLabel for="curso" value="Curso:" />
-                        <p:selectOneMenu id="curso" value="#{notaForm.nota.cursoId}" filter="true" filterMatchMode="contains">
-                            <f:selectItems value="#{notaForm.listaCursos}" var="c" itemLabel="#{c.nombre}" itemValue="#{c}" />
+                        <p:selectOneMenu id="curso" value="#{notaForm.selectedCursoId}" filter="true" filterMatchMode="contains">
+                            <f:selectItems value="#{notaForm.listaCursos}" var="c" itemLabel="#{c.nombre}" itemValue="#{c.id}" />
                         </p:selectOneMenu>
 
                         <h:outputLabel for="estudiante" value="Estudiante:" />
-                        <p:selectOneMenu id="estudiante" value="#{notaForm.nota.estudianteId}" filter="true" filterMatchMode="contains">
-                            <f:selectItems value="#{notaForm.listaEstudiantes}" var="e" itemLabel="#{e.nombre}" itemValue="#{e}" />
+                        <p:selectOneMenu id="estudiante" value="#{notaForm.selectedEstudianteId}" filter="true" filterMatchMode="contains">
+                            <f:selectItems value="#{notaForm.listaEstudiantes}" var="e" itemLabel="#{e.nombre}" itemValue="#{e.id}" />
                         </p:selectOneMenu>
 
                         <h:outputLabel for="notaExamen" value="Nota Examen:" />

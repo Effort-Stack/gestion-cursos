@@ -23,6 +23,8 @@ public class NotaForm implements Serializable {
     private List<Nota> listaNotas;
     private List<Curso> listaCursos;
     private List<Estudiante> listaEstudiantes;
+    private Integer selectedCursoId;
+    private Integer selectedEstudianteId;
 
     @EJB
     private NotaFacadeLocal notaFacade;
@@ -37,6 +39,22 @@ public class NotaForm implements Serializable {
         listaNotas = notaFacade.findAll(); // Cargar la lista de notas al iniciar
         listaCursos = cursoFacade.findAll(); // Cargar la lista de cursos al iniciar
         listaEstudiantes = estudianteFacade.findAll(); // Cargar la lista de estudiantes al iniciar
+    }
+    
+    public Integer getSelectedCursoId() {
+    return selectedCursoId;
+    }
+
+    public void setSelectedCursoId(Integer selectedCursoId) {
+        this.selectedCursoId = selectedCursoId;
+    }
+
+    public Integer getSelectedEstudianteId() {
+        return selectedEstudianteId;
+    }
+
+    public void setSelectedEstudianteId(Integer selectedEstudianteId) {
+        this.selectedEstudianteId = selectedEstudianteId;
     }
 
     public NotaForm() {
@@ -66,6 +84,10 @@ public class NotaForm implements Serializable {
     // Métodos para operaciones CRUD
     public void guardarNota() {
         try {
+            Curso curso = cursoFacade.find(selectedCursoId);
+            Estudiante estudiante = estudianteFacade.find(selectedEstudianteId);
+            nota.setCursoId(curso);
+            nota.setEstudianteId(estudiante);
             nota.calcularNotaFinal(); // Calcular la nota final antes de guardar
             notaFacade.create(nota);
             listaNotas = notaFacade.findAll(); // Actualizar la lista
@@ -73,11 +95,16 @@ public class NotaForm implements Serializable {
             nota = new Nota(); // Reiniciar el objeto nota para limpiar el formulario
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudo agregar la nota."));
+            e.printStackTrace(); // Agregar esto para imprimir la excepción en la consola y facilitar la depuración
         }
     }
 
     public void actualizarNota() {
         try {
+            Curso curso = cursoFacade.find(selectedCursoId);
+            Estudiante estudiante = estudianteFacade.find(selectedEstudianteId);
+            nota.setCursoId(curso);
+            nota.setEstudianteId(estudiante);
             nota.calcularNotaFinal(); // Calcular la nota final antes de actualizar
             notaFacade.edit(nota);
             listaNotas = notaFacade.findAll(); // Actualizar la lista
@@ -85,6 +112,7 @@ public class NotaForm implements Serializable {
             nota = null; // Reiniciar la selección
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudo actualizar la nota."));
+            e.printStackTrace(); // Agregar esto para imprimir la excepción en la consola y facilitar la depuración
         }
     }
 

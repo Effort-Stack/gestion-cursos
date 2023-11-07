@@ -8,6 +8,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import proyecto.ejb.EstudianteFacadeLocal;
 import proyecto.entidades.Estudiante;
 
@@ -49,8 +51,14 @@ public class EstudianteForm implements Serializable {
             listaEstudiantes = estudianteFacade.findAll(); // Actualizar la lista
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Éxito", "Estudiante agregado correctamente."));
             estudiante = new Estudiante(); // Reiniciar el objeto para limpiar el formulario
+        } catch (ConstraintViolationException e) {
+            for (ConstraintViolation<?> violation : e.getConstraintViolations()) {
+                String message = violation.getPropertyPath() + ": " + violation.getMessage();
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error de validación", message));
+            }
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudo agregar el estudiante."));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se pudo realizar la operación."));
+            e.printStackTrace(); // Para depuración
         }
     }
     
